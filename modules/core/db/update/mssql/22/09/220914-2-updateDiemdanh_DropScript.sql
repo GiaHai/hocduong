@@ -1,0 +1,1 @@
+alter table TRUONGHOC_DIEMDANH drop column NGUOITAODD_ID__U26453 ;

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        xmlns:c="http://schemas.haulmont.com/cuba/screen/jpql_condition.xsd"
+        caption="msg://chamcongGvBrowse.caption"
+        focusComponent="chamcongGvsTable"
+        messagesPack="com.company.truonghoc.web.screens.chamconggv">
+    <data readOnly="true">
+        <collection id="chamcongGvsDc"
+                    class="com.company.truonghoc.entity.ChamcongGv"
+                    view="chamcongGv-view">
+            <loader id="chamcongGvsDl">
+                <query>
+                    <![CDATA[select e from truonghoc_ChamcongGv e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="donvisDc"
+                    class="com.company.truonghoc.entity.Donvi"
+                    view="donvi-view">
+            <loader id="donvisDl">
+                <query>
+                    <![CDATA[select e from truonghoc_Donvi e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true">
+        </dataLoadCoordinator>
+    </facets>
+    <layout expand="chamcongGvsTable"
+            spacing="true"
+            stylename="css-layout-chamconggv">
+        <vbox spacing="true"
+              stylename="css-vbox-timkiem">
+            <label value="Điều kiện lọc" stylename="dieukienloc"/>
+            <hbox spacing="true"
+                  stylename="hbox-text">
+                <lookupField id="tendonviField"
+                             caption="Đơn vị"
+                             nullName="---Đơn vị---"
+                             stylename="nhap"/>
+                <lookupField id="tengiaovienField"
+                             caption="Giáo viên"
+                             nullName="---Giáo viên---"
+                             stylename="nhap"/>
+                <dateField id="ngaylamField"
+                           caption="Ngày làm"
+                           resolution="DAY"
+                           stylename="nhap"/>
+            </hbox>
+            <buttonsPanel>
+                <button id="timkiem"
+                        stylename="button-clearbtn"
+                        caption="Tìm kiếm" align="BOTTOM_CENTER"/>
+                <button id="clearBtn"
+                        caption="Xóa"
+                        align="BOTTOM_CENTER"/>
+            </buttonsPanel>
+        </vbox>
+        <groupTable id="chamcongGvsTable"
+                    width="100%"
+                    dataContainer="chamcongGvsDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+            </actions>
+            <columns>
+                <column id="stt" generator="stt"
+                        caption="STT"/>
+                <column id="hotenGv"
+                        caption="mainMsg://chamcong.hovaten"/>
+                <column id="donvigv"
+                        caption="mainMsg://chamcong.donvi"/>
+                <column id="ngaylam"
+                        caption="mainMsg://chamcong.ngaylam"/>
+                <column id="buoilam"
+                        caption="mainMsg://chamcong.buoilam"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="chamcongGvsTable.create"/>
+                <button id="editBtn" action="chamcongGvsTable.edit"/>
+                <button id="removeBtn" action="chamcongGvsTable.remove"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>

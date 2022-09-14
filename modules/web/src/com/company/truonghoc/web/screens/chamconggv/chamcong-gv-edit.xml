@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://chamcongGvEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.truonghoc.web.screens.chamconggv">
+    <data>
+        <instance id="chamcongGvDc"
+                  class="com.company.truonghoc.entity.ChamcongGv"
+                  view="chamcongGv-view">
+            <loader/>
+        </instance>
+        <collection id="giaoviensDc"
+                    class="com.company.truonghoc.entity.Giaovien"
+                    view="giaovien-view">
+            <loader id="giaoviensDl">
+                <query>
+                    <![CDATA[select e from truonghoc_Giaovien e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="chamcongGvDc">
+            <column width="350px">
+                <lookupField id="hotenGvField"
+                             property="hotenGv"
+                             caption="mainMsg://chamcong.hovaten"
+                             optionsContainer="giaoviensDc"/>
+                <textField id="donvigvField"
+                           caption="mainMsg://chamcong.donvi"
+                           property="donvigv"/>
+                <dateField id="ngaylamField"
+                           caption="mainMsg://chamcong.ngaylam"
+                           property="ngaylam"/>
+                <lookupField id="buoilamField"
+                             caption="mainMsg://chamcong.buoilam"
+                             property="buoilam"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://diemdanhEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.truonghoc.web.screens.diemdanh">
+    <data>
+        <instance id="diemdanhDc"
+                  class="com.company.truonghoc.entity.Diemdanh">
+            <view extends="diemdanh-view"/>
+            <loader/>
+        </instance>
+        <collection id="giaoviensDc"
+                    class="com.company.truonghoc.entity.Giaovien"
+                    view="giaovien-view">
+            <loader id="giaoviensDl">
+                <query>
+                    <![CDATA[select e from truonghoc_Giaovien e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="diemdanhDc">
+            <column width="350px">
+                <textField id="nguoitaoField" property="nguoitaodd"
+                caption="Giáo viên"/>
+                <textField id="donviField" property="donvitao_diemdanh"
+                caption="Đơn vị"/>
+                <lookupField id="hotenhsField"
+                             property="hotenhs"
+                             caption="mainMsg://diemdanh.hoten"/>
+                <dateField id="ngaynghiField"
+                           property="ngaynghi"
+                           caption="mainMsg://diemdanh.ngaynghi"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
